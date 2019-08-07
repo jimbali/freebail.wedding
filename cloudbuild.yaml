@@ -82,7 +82,7 @@ steps:
      sed "s/GOOGLE_CLOUD_PROJECT/${PROJECT_ID}/g" k8s/deployment.tpl.yaml | \
      sed "s/COMMIT_SHA/${SHORT_SHA}/g" > freebail-wedding-cd/k8s/frontend/deployment.yaml
 
-# This step pushes the manifest back to hello-cloudbuild-env
+# This step pushes the manifest back to freebail-wedding-cd
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Push manifest
   entrypoint: /bin/sh
