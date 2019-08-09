@@ -1,13 +1,21 @@
 steps:
-# Run yarn
-- name: 'gcr.io/cloud-builders/yarn'
-  id: Yarn
+# Build test container
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build test container
+  args:
+  - 'build'
+  - '-t'
+  - 'run-tests'
+  - '-f'
+  - 'Dockerfile.test'
+  - '.'
 
-# Test
-- name: 'gcr.io/cloud-builders/yarn'
+# Run tests
+- name: 'gcr.io/cloud-builders/docker'
   id: Test
   args:
-  - 'test-ci'
+  - 'run'
+  - 'run-tests'
 
 # This step builds the container image.
 - name: 'gcr.io/cloud-builders/docker'
