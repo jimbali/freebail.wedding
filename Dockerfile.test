@@ -1,0 +1,5 @@
+FROM node:12-alpine as react-build
+WORKDIR /app
+COPY . ./
+RUN yarn
+CMD ["yarn", "test-ci"]
