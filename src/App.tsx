@@ -1,16 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FrontPage from './pages/front'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Freebail Wedding!
-        </p>
-      </header>
+      <FrontPage/>
     </div>
   );
 }
