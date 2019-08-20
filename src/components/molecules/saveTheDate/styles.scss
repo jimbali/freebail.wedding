@@ -1,9 +1,3 @@
-.saveTheDateContainer {
-    height: 0;
-    padding-bottom: 84.928%;
-    position: relative;
-}
-
 .saveTheDate {
     background-image: url(../../../assets/img/heart.svg);
     background-repeat: no-repeat;
@@ -14,6 +8,14 @@
     position: absolute;
     right: 0;
     top: 0;
+
+    .inner {
+        bottom: 20%;
+        left: 10%;
+        position: absolute;
+        right: 10%;
+        top: 20%;
+    }
 
     h2, p {
         font-size: 4vw;
