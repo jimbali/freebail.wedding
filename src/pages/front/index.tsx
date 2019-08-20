@@ -4,10 +4,6 @@ import HeroSection from '../../components/organisms/heroSection';
 import SaveTheDate from '../../components/molecules/saveTheDate';
 import LeavesBackground from '../../assets/img/leaves.jpg'
 
-function saveTheDate() {
-  return(<SaveTheDate/>)
-}
-
 function FrontPage() {
   return (
     <div className="main">
@@ -15,7 +11,7 @@ function FrontPage() {
         <div className="App-content">
           <HeroSection
             backgroundImage={LeavesBackground}
-            centralWidget={saveTheDate}
+            centralWidget={<SaveTheDate/>}
           />
         </div>
       </LongScroll>

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactChild } from 'react'
 import SaveTheDate from '../../molecules/saveTheDate'
 import './styles.scss'
 
 interface IHeroSectionProps {
   backgroundImage: string
-  centralWidget: typeof SaveTheDate
+  centralWidget: ReactChild;
 }
 
 function HeroSection(props: IHeroSectionProps) {
@@ -13,6 +13,9 @@ function HeroSection(props: IHeroSectionProps) {
       className="heroSection"
       style={{ backgroundImage: `url(${props.backgroundImage})` }}
     >
+        <div className="centralWidget">
+            {props.centralWidget}
+        </div>
     </div>
   )
 }
