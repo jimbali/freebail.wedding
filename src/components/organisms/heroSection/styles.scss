@@ -2,8 +2,15 @@
     height: 100vh;
 
     .centralWidget {
-        display: inline-block;
-        margin: 0 auto;
-        max-width: 80%;
+        width: 80vw; 
+        height: 67.942vw;
+        max-height: 80vh;
+        max-width: 135.88vh;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 }

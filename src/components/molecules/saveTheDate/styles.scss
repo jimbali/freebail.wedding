@@ -1,15 +1,22 @@
+.saveTheDateContainer {
+    height: 0;
+    padding-bottom: 84.928%;
+    position: relative;
+}
+
 .saveTheDate {
     background-image: url(../../../assets/img/heart.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    height: 0;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 100%;
-    padding-bottom: 84.928%;
-    width: 800px;
+    background-position-x: center;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     h2, p {
         font-size: 4vw;
+        margin: 0;
     }
 }
