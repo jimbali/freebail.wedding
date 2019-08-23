@@ -1,5 +1,4 @@
 import React, { ReactChild } from 'react'
-import SaveTheDate from '../../molecules/saveTheDate'
 import './styles.scss'
 
 interface IHeroSectionProps {
