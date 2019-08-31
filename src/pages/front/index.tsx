@@ -3,8 +3,15 @@ import LongScroll from '../../components/templates/longScroll';
 import HeroSection from '../../components/organisms/heroSection';
 import SaveTheDate from '../../components/molecules/saveTheDate';
 import LeavesBackground from '../../assets/img/leaves.jpg'
+import { RouteComponentProps } from 'react-router-dom';
 
-function FrontPage() {
+interface IFrontPageRouteParams {
+  inviteCode: string
+}
+
+function FrontPage(props: RouteComponentProps<IFrontPageRouteParams>) {
+  const inviteCode: string = props.match.params.inviteCode
+
   return (
     <div className="main">
       <LongScroll>
@@ -13,6 +20,9 @@ function FrontPage() {
             backgroundImage={LeavesBackground}
             centralWidget={<SaveTheDate/>}
           />
+          <div>
+            {inviteCode}
+          </div>
         </div>
       </LongScroll>
     </div>
