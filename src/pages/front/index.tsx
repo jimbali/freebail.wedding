@@ -4,6 +4,8 @@ import HeroSection from '../../components/organisms/heroSection';
 import SaveTheDate from '../../components/molecules/saveTheDate';
 import LeavesBackground from '../../assets/img/leaves.jpg'
 import { RouteComponentProps } from 'react-router-dom';
+import { IGuest } from '../../state/interfaces/iGuest'
+import AddressSection from '../../components/organisms/addressSection'
 
 interface IFrontPageRouteParams {
   inviteCode: string
@@ -11,10 +13,6 @@ interface IFrontPageRouteParams {
 
 interface IFrontPageState {
   guest: IGuest
-}
-
-interface IGuest {
-  name: string
 }
 
 class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParams>, IFrontPageState> {
@@ -56,9 +54,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
               backgroundImage={LeavesBackground}
               centralWidget={<SaveTheDate/>}
             />
-            <div>
-              {this.state.guest.name}
-            </div>
+            <AddressSection guest={this.state.guest}/>
           </div>
         </LongScroll>
       </div>
