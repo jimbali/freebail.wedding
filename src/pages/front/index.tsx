@@ -19,10 +19,13 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   constructor(props: RouteComponentProps<IFrontPageRouteParams>) {
     super(props);
     this.state = { guest: { name: 'hello' } }
+    console.log(process.env)
   }
 
   requestUrl(): string {
-    return '/api/guests/' + this.props.match.params.inviteCode
+    return process.env.REACT_APP_API_URL + 
+             '/guests/' +
+             this.props.match.params.inviteCode
   }
 
   updateFormFields() {
