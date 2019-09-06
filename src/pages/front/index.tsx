@@ -18,19 +18,50 @@ interface IFrontPageState {
 class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParams>, IFrontPageState> {
   constructor(props: RouteComponentProps<IFrontPageRouteParams>) {
     super(props);
-    this.state = { guest: { name: 'hello' } }
-    console.log(process.env)
+    this.state = {
+      guest: {
+        id: 1,
+        name: '',
+        invite_code: '',
+        invite_link: null,
+        invite_sent: null,
+        count: 0
+      }
+    }
   }
 
-  requestUrl(): string {
+  public componentDidMount() {
+    const inviteCode = this.props.match.params.inviteCode
+    if(!inviteCode) return
+
+    this.updateFormFields(this.requestUrl(inviteCode))
+  }
+
+  public render() {
+    return (
+      <div className="main">
+        <LongScroll>
+          <div className="App-content">
+            <HeroSection
+              backgroundImage={LeavesBackground}
+              centralWidget={<SaveTheDate/>}
+            />
+            <AddressSection guest={this.state.guest} updateGuest={this.updateGuest}/>
+          </div>
+        </LongScroll>
+      </div>
+    );
+  }
+
+  private requestUrl(inviteCode: string): string {
     return process.env.REACT_APP_API_URL + 
              '/guests/' +
              this.props.match.params.inviteCode
   }
 
-  updateFormFields() {
+  private updateFormFields(url: string) {
     new Promise<IGuest>((resolve, reject) => {
-      fetch(this.requestUrl())
+      fetch(url)
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -44,24 +75,8 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
     }).then((guest: IGuest) => { console.log(guest); this.setState({ guest: guest }) })
   }
 
-  componentDidMount() {
-    this.updateFormFields()
-  }
-
-  render() {
-    return (
-      <div className="main">
-        <LongScroll>
-          <div className="App-content">
-            <HeroSection
-              backgroundImage={LeavesBackground}
-              centralWidget={<SaveTheDate/>}
-            />
-            <AddressSection guest={this.state.guest}/>
-          </div>
-        </LongScroll>
-      </div>
-    );
+  private updateGuest(guest: IGuest) {
+    console.log(guest)
   }
 }
 

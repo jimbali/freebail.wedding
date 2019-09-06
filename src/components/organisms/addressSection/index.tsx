@@ -4,14 +4,19 @@ import { IGuest } from '../../../state/interfaces/iGuest'
 import ModelForm from '../../molecules/modelForm'
 
 interface IAddressSectionProps {
-  guest: IGuest;
+  guest: IGuest,
+  updateGuest: (guest: IGuest) => void
 }
 
 function AddressSection(props: IAddressSectionProps) {
+  const onSubmit = (model: IGuest) => {
+    props.updateGuest(model)
+  }
+
   return (
     <div className="addressSection">
         <div className="guest">
-          <ModelForm model={props.guest}/>
+          <ModelForm<IGuest> model={props.guest} onSubmit={onSubmit}/>
         </div>
     </div>
   )

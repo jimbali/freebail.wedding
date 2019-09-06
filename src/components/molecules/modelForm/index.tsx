@@ -2,31 +2,62 @@ import React, {ReactChild} from 'react'
 import './styles.scss'
 import TextInput from '../../atoms/textInput'
 
-interface IModelFormProps {
-  model: Object
+interface IModelFormProps<T extends Object> {
+  model: T,
+  onSubmit: (model: T) => void
 }
 
-const ModelForm = (props: IModelFormProps) => {
-  const model = props.model
+interface IModelFormState<T extends Object> {
+  model: T
+}
 
-  let inputs: ReactChild[] = [];
-
-  Object.entries(model).map((entry) => {
-    const field = entry[0]
-    const value = entry[1]
-    
-    if(typeof field === 'string') {
-      inputs.push(<TextInput value={value}/>)
-    } else {
-      inputs.push(<p>feck</p>)
+class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IModelFormState<T>> {
+  constructor(props: IModelFormProps<T>) {
+    super(props);
+    this.state = {
+      model: props.model
     }
-  })
+  }
 
-  return (
-    <form className="modelForm">
-      {inputs}
-    </form>
-  )
+  public render() {
+    return (
+      <form className="modelForm" onSubmit={this.onSubmit.bind(this)}>
+        {this.inputs()}
+        <input type="submit" value="Send"/>
+      </form>
+    )
+  }
+
+  public handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState(prevState => ({
+      model: {
+        ...prevState.model,
+        [name]: value
+      }
+    }))
+  }
+
+  private inputs(): ReactChild[] {
+    return Object.entries(this.state.model).map((entry, index) => {
+      const name = entry[0]
+      const value = entry[1]
+      
+      if(typeof name === 'string') {
+        return <TextInput name={name} value={value} key={index} onChange={this.handleInputChange.bind(this)}/>
+      } else {
+        return <p key={index}>feck</p>
+      }
+    })
+  }
+
+  private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
+    this.props.onSubmit(this.state.model)
+    event.preventDefault()
+  }
 }
 
 export default ModelForm;
