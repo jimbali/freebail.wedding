@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.scss'
 
 interface ITextInputProps {
+  label: string,
   name: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   value: string
@@ -9,11 +10,14 @@ interface ITextInputProps {
 
 const TextInput = (props: ITextInputProps) => {
   return (
-    <input type="text"
-           className="textInput" 
-           name={props.name}
-           defaultValue={props.value}
-           onChange={props.onChange}/>
+    <label>
+      {props.label}
+      <input type="text"
+            className="textInput" 
+            name={props.name}
+            defaultValue={props.value}
+            onChange={props.onChange}/>
+    </label>
   )
 }
 
