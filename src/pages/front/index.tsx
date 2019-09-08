@@ -7,6 +7,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { IGuest } from '../../state/interfaces/iGuest'
 import { IGuestPatch } from '../../state/interfaces/iGuestPatch'
 import AddressSection from '../../components/organisms/addressSection'
+import { Element, Link } from 'rc-scroll-anim'
 
 interface IFrontPageRouteParams {
   inviteCode: string
@@ -15,7 +16,8 @@ interface IFrontPageRouteParams {
 interface IFrontPageState {
   guest: IGuest,
   guestPatch: IGuestPatch,
-  inviteCode: string
+  inviteCode: string,
+  updateComplete: boolean
 }
 
 class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParams>, IFrontPageState> {
@@ -38,7 +40,8 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         postcode: '',
         country: ''
       },
-      inviteCode: this.props.match.params.inviteCode
+      inviteCode: this.props.match.params.inviteCode,
+      updateComplete: false
     }
   }
 
@@ -53,13 +56,17 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
           <div className="App-content">
             <HeroSection
               backgroundImage={LeavesBackground}
-              centralWidget={<SaveTheDate/>}
+              centralWidget={<Link to="addressSection"><SaveTheDate/></Link>}
             />
-            <AddressSection
-              name={this.state.guest.name}
-              guestPatch={this.state.guestPatch}
-              updateGuest={this.updateGuest.bind(this)}
-            />
+            <Element id="addressSection">
+              <AddressSection
+                name={this.state.guest.name}
+                guestPatch={this.state.guestPatch}
+
+                updateComplete={this.state.updateComplete}
+                updateGuest={this.updateGuest.bind(this)}
+              />
+            </Element>
           </div>
         </LongScroll>
       </div>
@@ -97,7 +104,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(guest)
     }
-    
+
     fetch(this.requestUrl(), fetchOptions)
       .then(response => {
         if (response.ok) {
@@ -109,7 +116,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   private displayThanks() {
-    console.log('success!')
+    this.setState({ updateComplete: true })
   }
 }
 
