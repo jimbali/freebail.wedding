@@ -6,6 +6,7 @@ import LeavesBackground from '../../assets/img/leaves.jpg'
 import { RouteComponentProps } from 'react-router-dom'
 import { IGuest } from '../../state/interfaces/iGuest'
 import { IGuestPatch } from '../../state/interfaces/iGuestPatch'
+import { IGuestPost } from '../../state/interfaces/iGuestPost'
 import AddressSection from '../../components/organisms/addressSection'
 import { Element, Link } from 'rc-scroll-anim'
 
@@ -62,7 +63,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
               <AddressSection
                 name={this.state.guest.name}
                 guestPatch={this.state.guestPatch}
-
+                newGuest={this.newGuest.bind(this)}
                 updateComplete={this.state.updateComplete}
                 updateGuest={this.updateGuest.bind(this)}
               />
@@ -80,25 +81,32 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   private updateName() {
-    new Promise<IGuest>((resolve, reject) => {
-      fetch(this.requestUrl())
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            console.log(response)
-          }
-        })
-        .then(jsonResponse => {
-          resolve(jsonResponse as IGuest)
-        })
-    }).then((guest: IGuest) => {
-      this.setState({ guest: guest })
-    })
+    fetch(this.requestUrl())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Bad response')
+        }
+      })
+      .then(guest => {
+        this.setState({ guest: guest })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   private updateGuest(guest: IGuestPatch) {
-    let method = this.state.inviteCode ? 'PATCH' : 'POST'
+    this.sendRequest(guest, 'PATCH')
+  }
+
+  private newGuest(guest: IGuestPost) {
+    console.log('yeah')
+    this.sendRequest(guest, 'POST')
+  }
+
+  private sendRequest(guest: IGuestPatch | IGuestPost, method: string) {
     let fetchOptions = {
       method: method,
       headers: { 'Content-Type': 'application/json' },
