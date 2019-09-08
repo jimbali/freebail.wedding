@@ -5,9 +5,10 @@ import { IGuestPost } from '../../../state/interfaces/iGuestPost'
 import ModelForm from '../../molecules/modelForm'
 
 interface IAddressSectionProps {
+  error?: string,
   guestPatch: IGuestPatch,
   name: string | null,
-  newGuest: (guest: IGuestPost) => void,
+  createGuest: (guest: IGuestPost) => void,
   updateComplete: boolean,
   updateGuest: (guest: IGuestPatch) => void
 }
@@ -47,7 +48,7 @@ function AddressSection(props: IAddressSectionProps) {
           below and let us know your address and we'll work it out!
         </p>
         <div className="guest">
-          <ModelForm<IGuestPost> key="postForm" model={newGuest()} onSubmit={newGuest}/>
+          <ModelForm<IGuestPost> key="postForm" model={newGuest()} onSubmit={props.createGuest}/>
         </div>
         <p>Thanks, Sarah &amp; Jim x</p>
       </div>
@@ -62,10 +63,21 @@ function AddressSection(props: IAddressSectionProps) {
       </div>
     )
   }
+
+  const renderError = () => {
+    return (
+      <div className="addressSection">
+        <h2>Whoops!</h2>
+        <p>{props.error}</p>
+      </div>
+    )
+  }
   
   const render = () => {
     if (props.updateComplete) {
       return renderComplete()
+    } else if (props.error) {
+      return renderError()
     } else if (props.name) {
       return renderAddressRequest()
     } else {

@@ -15,6 +15,7 @@ interface IFrontPageRouteParams {
 }
 
 interface IFrontPageState {
+  error?: string,
   guest: IGuest,
   guestPatch: IGuestPatch,
   inviteCode: string,
@@ -61,9 +62,10 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
             />
             <Element id="addressSection">
               <AddressSection
-                name={this.state.guest.name}
+                error={this.state.error}
                 guestPatch={this.state.guestPatch}
-                newGuest={this.newGuest.bind(this)}
+                name={this.state.guest.name}
+                createGuest={this.newGuest.bind(this)}
                 updateComplete={this.state.updateComplete}
                 updateGuest={this.updateGuest.bind(this)}
               />
@@ -119,7 +121,13 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
           this.displayThanks()
         } else {
           console.log(response)
+          throw new Error('Bad response')
         }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Sorry, there was a problem sending your address! Please refresh and try again.'
+        })
       })
   }
 
