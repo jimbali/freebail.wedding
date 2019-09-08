@@ -1,10 +1,11 @@
-import React from 'react';
-import LongScroll from '../../components/templates/longScroll';
-import HeroSection from '../../components/organisms/heroSection';
-import SaveTheDate from '../../components/molecules/saveTheDate';
+import React from 'react'
+import LongScroll from '../../components/templates/longScroll'
+import HeroSection from '../../components/organisms/heroSection'
+import SaveTheDate from '../../components/molecules/saveTheDate'
 import LeavesBackground from '../../assets/img/leaves.jpg'
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom'
 import { IGuest } from '../../state/interfaces/iGuest'
+import { IGuestPatch } from '../../state/interfaces/iGuestPatch'
 import AddressSection from '../../components/organisms/addressSection'
 
 interface IFrontPageRouteParams {
@@ -12,7 +13,9 @@ interface IFrontPageRouteParams {
 }
 
 interface IFrontPageState {
-  guest: IGuest
+  guest: IGuest,
+  guestPatch: IGuestPatch,
+  inviteCode: string
 }
 
 class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParams>, IFrontPageState> {
@@ -26,15 +29,21 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         invite_link: null,
         invite_sent: null,
         count: 0
-      }
+      },
+      guestPatch: {
+        email: '',
+        street: '',
+        town: '',
+        county: '',
+        postcode: '',
+        country: ''
+      },
+      inviteCode: this.props.match.params.inviteCode
     }
   }
 
   public componentDidMount() {
-    const inviteCode = this.props.match.params.inviteCode
-    if(!inviteCode) return
-
-    this.updateFormFields(this.requestUrl(inviteCode))
+    if (this.state.inviteCode) this.updateName()
   }
 
   public render() {
@@ -46,22 +55,26 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
               backgroundImage={LeavesBackground}
               centralWidget={<SaveTheDate/>}
             />
-            <AddressSection guest={this.state.guest} updateGuest={this.updateGuest}/>
+            <AddressSection
+              name={this.state.guest.name}
+              guestPatch={this.state.guestPatch}
+              updateGuest={this.updateGuest.bind(this)}
+            />
           </div>
         </LongScroll>
       </div>
     );
   }
 
-  private requestUrl(inviteCode: string): string {
+  private requestUrl(): string {
     return process.env.REACT_APP_API_URL + 
              '/guests/' +
-             this.props.match.params.inviteCode
+             (this.state.inviteCode || '')
   }
 
-  private updateFormFields(url: string) {
+  private updateName() {
     new Promise<IGuest>((resolve, reject) => {
-      fetch(url)
+      fetch(this.requestUrl())
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -72,11 +85,31 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         .then(jsonResponse => {
           resolve(jsonResponse as IGuest)
         })
-    }).then((guest: IGuest) => { console.log(guest); this.setState({ guest: guest }) })
+    }).then((guest: IGuest) => {
+      this.setState({ guest: guest })
+    })
   }
 
-  private updateGuest(guest: IGuest) {
-    console.log(guest)
+  private updateGuest(guest: IGuestPatch) {
+    let method = this.state.inviteCode ? 'PATCH' : 'POST'
+    let fetchOptions = {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(guest)
+    }
+    
+    fetch(this.requestUrl(), fetchOptions)
+      .then(response => {
+        if (response.ok) {
+          this.displayThanks()
+        } else {
+          console.log(response)
+        }
+      })
+  }
+
+  private displayThanks() {
+    console.log('success!')
   }
 }
 

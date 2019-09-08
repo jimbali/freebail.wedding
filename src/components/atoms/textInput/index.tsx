@@ -10,14 +10,16 @@ interface ITextInputProps {
 
 const TextInput = (props: ITextInputProps) => {
   return (
-    <label>
-      {props.label}
-      <input type="text"
-            className="textInput" 
-            name={props.name}
-            defaultValue={props.value}
-            onChange={props.onChange}/>
-    </label>
+    <div className="row">
+      <label>{props.label}</label>
+      <input
+        type="text"
+        className="textInput" 
+        name={props.name}
+        defaultValue={props.value}
+        onChange={props.onChange}
+      />
+    </div>
   )
 }
 

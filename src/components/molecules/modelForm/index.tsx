@@ -46,12 +46,16 @@ class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IM
       const name = entry[0]
       const value = entry[1]
       
-      if(typeof name === 'string') {
-        return <TextInput name={name}
-                          value={value}
-                          label={name}
-                          key={index}
-                          onChange={this.handleInputChange.bind(this)}/>
+      if (typeof name === 'string') {
+        return (
+          <TextInput
+            name={name}
+            value={value}
+            label={name}
+            key={index}
+            onChange={this.handleInputChange.bind(this)}
+          />
+        )
       } else {
         return <p key={index}>feck</p>
       }
@@ -59,8 +63,8 @@ class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IM
   }
 
   private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    this.props.onSubmit(this.state.model)
     event.preventDefault()
+    this.props.onSubmit(this.state.model)
   }
 }
 
