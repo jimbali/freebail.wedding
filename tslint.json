@@ -5,12 +5,13 @@
     ],
     "jsRules": {},
     "rules": {
-      "semicolon": [true, "never"],
-      "quotemark": [true, "single", "jsx-double"],
+      "curly": [true, "ignore-same-line"],
       "no-any": true,
-      "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
       "object-literal-sort-keys": true,
-      "ordered-imports": true
+      "ordered-imports": true,
+      "quotemark": [true, "single", "jsx-double"],
+      "semicolon": [true, "never"],
+      "trailing-comma": [true, {"multiline": "never", "singleline": "never"}]
     },
     "rulesDirectory": []
 }

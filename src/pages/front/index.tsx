@@ -48,7 +48,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   public componentDidMount() {
-    if (this.state.inviteCode) { this.updateName() }
+    if (this.state.inviteCode) this.updateName()
   }
 
   public render() {
