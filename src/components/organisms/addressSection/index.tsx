@@ -1,8 +1,8 @@
 import React from 'react'
-import './styles.scss'
 import { IGuestPatch } from '../../../state/interfaces/iGuestPatch'
 import { IGuestPost } from '../../../state/interfaces/iGuestPost'
 import ModelForm from '../../molecules/modelForm'
+import './styles.scss'
 
 interface IAddressSectionProps {
   error?: string,
@@ -72,7 +72,7 @@ function AddressSection(props: IAddressSectionProps) {
       </div>
     )
   }
-  
+
   const render = () => {
     if (props.updateComplete) {
       return renderComplete()
@@ -88,4 +88,4 @@ function AddressSection(props: IAddressSectionProps) {
   return render()
 }
 
-export default AddressSection;
+export default AddressSection

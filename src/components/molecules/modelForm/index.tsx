@@ -1,6 +1,6 @@
 import React, {ReactChild} from 'react'
-import './styles.scss'
 import TextInput from '../../atoms/textInput'
+import './styles.scss'
 
 interface IModelFormProps<T extends Object> {
   model: T,
@@ -13,7 +13,7 @@ interface IModelFormState<T extends Object> {
 
 class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IModelFormState<T>> {
   constructor(props: IModelFormProps<T>) {
-    super(props);
+    super(props)
     this.state = {
       model: props.model
     }
@@ -29,11 +29,11 @@ class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IM
   }
 
   public handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.value
+    const name = target.name
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       model: {
         ...prevState.model,
         [name]: value
@@ -45,7 +45,7 @@ class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IM
     return Object.entries(this.state.model).map((entry, index) => {
       const name = entry[0]
       const value = entry[1]
-      
+
       if (typeof name === 'string') {
         return (
           <TextInput
@@ -68,4 +68,4 @@ class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IM
   }
 }
 
-export default ModelForm;
+export default ModelForm

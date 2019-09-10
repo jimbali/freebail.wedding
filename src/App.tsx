@@ -1,21 +1,21 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import './App.css'
 import FrontPage from './pages/front'
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route exact path='/' render={(props) => (
+          <Route exact path="/" render={(props) => (
             <Redirect to="/save-the-date"/>
           )}/>
-          <Route path='/save-the-date/:inviteCode?' component={FrontPage}/>
+          <Route path="/save-the-date/:inviteCode?" component={FrontPage}/>
         </Switch>
       </div>
   </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

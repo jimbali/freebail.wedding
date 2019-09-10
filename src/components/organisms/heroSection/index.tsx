@@ -3,7 +3,7 @@ import './styles.scss'
 
 interface IHeroSectionProps {
   backgroundImage: string
-  centralWidget: ReactChild;
+  centralWidget: ReactChild
 }
 
 function HeroSection(props: IHeroSectionProps) {
@@ -19,4 +19,4 @@ function HeroSection(props: IHeroSectionProps) {
   )
 }
 
-export default HeroSection;
+export default HeroSection

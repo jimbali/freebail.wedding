@@ -14,7 +14,7 @@ const TextInput = (props: ITextInputProps) => {
       <label>{props.label}</label>
       <input
         type="text"
-        className="textInput" 
+        className="textInput"
         name={props.name}
         defaultValue={props.value}
         onChange={props.onChange}
@@ -23,4 +23,4 @@ const TextInput = (props: ITextInputProps) => {
   )
 }
 
-export default TextInput;
+export default TextInput

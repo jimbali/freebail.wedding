@@ -10,8 +10,7 @@
       "no-any": true,
       "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
       "object-literal-sort-keys": true,
-      "ordered-imports": true,
-      "jsx-no-lambda": true
+      "ordered-imports": true
     },
     "rulesDirectory": []
 }

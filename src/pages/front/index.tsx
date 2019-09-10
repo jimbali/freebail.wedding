@@ -1,14 +1,14 @@
+import { Element, Link } from 'rc-scroll-anim'
 import React from 'react'
-import LongScroll from '../../components/templates/longScroll'
-import HeroSection from '../../components/organisms/heroSection'
-import SaveTheDate from '../../components/molecules/saveTheDate'
-import LeavesBackground from '../../assets/img/leaves.jpg'
 import { RouteComponentProps } from 'react-router-dom'
+import LeavesBackground from '../../assets/img/leaves.jpg'
+import SaveTheDate from '../../components/molecules/saveTheDate'
+import AddressSection from '../../components/organisms/addressSection'
+import HeroSection from '../../components/organisms/heroSection'
+import LongScroll from '../../components/templates/longScroll'
 import { IGuest } from '../../state/interfaces/iGuest'
 import { IGuestPatch } from '../../state/interfaces/iGuestPatch'
 import { IGuestPost } from '../../state/interfaces/iGuestPost'
-import AddressSection from '../../components/organisms/addressSection'
-import { Element, Link } from 'rc-scroll-anim'
 
 interface IFrontPageRouteParams {
   inviteCode: string
@@ -24,7 +24,7 @@ interface IFrontPageState {
 
 class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParams>, IFrontPageState> {
   constructor(props: RouteComponentProps<IFrontPageRouteParams>) {
-    super(props);
+    super(props)
     this.state = {
       guest: {
         id: 1,
@@ -48,7 +48,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   public componentDidMount() {
-    if (this.state.inviteCode) this.updateName()
+    if (this.state.inviteCode) { this.updateName() }
   }
 
   public render() {
@@ -73,28 +73,28 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
           </div>
         </LongScroll>
       </div>
-    );
+    )
   }
 
   private requestUrl(): string {
-    return process.env.REACT_APP_API_URL + 
+    return process.env.REACT_APP_API_URL +
              '/guests/' +
              (this.state.inviteCode || '')
   }
 
   private updateName() {
     fetch(this.requestUrl())
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json()
         } else {
           throw new Error('Bad response')
         }
       })
-      .then(guest => {
-        this.setState({ guest: guest })
+      .then((guest) => {
+        this.setState({ guest })
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   }
@@ -109,14 +109,14 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   private sendRequest(guest: IGuestPatch | IGuestPost, method: string) {
-    let fetchOptions = {
-      method: method,
+    const fetchOptions = {
+      method,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(guest)
     }
 
     fetch(this.requestUrl(), fetchOptions)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           this.displayThanks()
         } else {
@@ -124,7 +124,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
           throw new Error('Bad response')
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           error: 'Sorry, there was a problem sending your address! Please refresh and try again.'
         })
@@ -136,4 +136,4 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 }
 
-export default FrontPage;
+export default FrontPage

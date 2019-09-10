@@ -8,4 +8,4 @@ function SaveTheDate(props: React.HTMLAttributes<HTMLElement>) {
   )
 }
 
-export default SaveTheDate;
+export default SaveTheDate

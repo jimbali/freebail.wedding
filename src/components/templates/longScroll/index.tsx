@@ -14,4 +14,4 @@ function LongScroll(props: ILongScrollProps) {
   )
 }
 
-export default LongScroll;
+export default LongScroll
