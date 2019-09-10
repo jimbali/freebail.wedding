@@ -2,16 +2,16 @@ import React, {ReactChild} from 'react'
 import TextInput from '../../atoms/textInput'
 import './styles.scss'
 
-interface IModelFormProps<T extends Object> {
+interface IModelFormProps<T extends object> {
   model: T,
   onSubmit: (model: T) => void
 }
 
-interface IModelFormState<T extends Object> {
+interface IModelFormState<T extends object> {
   model: T
 }
 
-class ModelForm<T extends Object> extends React.Component<IModelFormProps<T>, IModelFormState<T>> {
+class ModelForm<T extends object> extends React.Component<IModelFormProps<T>, IModelFormState<T>> {
   constructor(props: IModelFormProps<T>) {
     super(props)
     this.state = {

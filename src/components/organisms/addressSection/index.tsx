@@ -16,13 +16,13 @@ interface IAddressSectionProps {
 function AddressSection(props: IAddressSectionProps) {
   const newGuest = (): IGuestPost => {
     return {
-      name: '',
-      email: '',
-      street: '',
-      town: '',
+      country: '',
       county: '',
+      email: '',
+      name: '',
       postcode: '',
-      country: ''
+      street: '',
+      town: ''
     }
   }
 

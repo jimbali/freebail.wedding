@@ -27,20 +27,20 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
     super(props)
     this.state = {
       guest: {
+        count: 0,
         id: 1,
-        name: '',
         invite_code: '',
         invite_link: null,
         invite_sent: null,
-        count: 0
+        name: ''
       },
       guestPatch: {
-        email: '',
-        street: '',
-        town: '',
+        country: '',
         county: '',
+        email: '',
         postcode: '',
-        country: ''
+        street: '',
+        town: ''
       },
       inviteCode: this.props.match.params.inviteCode,
       updateComplete: false
@@ -95,7 +95,7 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         this.setState({ guest })
       })
       .catch((error) => {
-        console.log(error)
+        // Do nothing
       })
   }
 
@@ -104,15 +104,14 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
   }
 
   private newGuest(guest: IGuestPost) {
-    console.log('yeah')
     this.sendRequest(guest, 'POST')
   }
 
   private sendRequest(guest: IGuestPatch | IGuestPost, method: string) {
     const fetchOptions = {
-      method,
+      body: JSON.stringify(guest),
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(guest)
+      method
     }
 
     fetch(this.requestUrl(), fetchOptions)
@@ -120,7 +119,6 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         if (response.ok) {
           this.displayThanks()
         } else {
-          console.log(response)
           throw new Error('Bad response')
         }
       })
