@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should render without exploding 1`] = `
+<div
+  className="row"
+>
+  <label>
+    Name
+  </label>
+  <input
+    className="textInput"
+    defaultValue="Bobbles"
+    name="name"
+    onChange={[MockFunction]}
+    type="text"
+  />
+</div>
+`;
