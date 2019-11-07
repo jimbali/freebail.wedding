@@ -1,5 +1,5 @@
 .App {
-  font-family: 'dancing_scriptregular';
+  font-family: 'bariol_regular';
   text-align: center;
 }
 
@@ -17,5 +17,12 @@
        url(./assets/fonts/dancing_script-webfont.woff) format('woff');
   font-weight: normal;
   font-style: normal;
+}
 
+@font-face {
+  font-family: 'bariol_regular';
+  src: url(./assets/fonts/bariol_regular-webfont.woff2) format('woff2'),
+       url(./assets/fonts/bariol_regular-webfont.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
