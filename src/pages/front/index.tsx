@@ -35,12 +35,12 @@ class FrontPage extends React.Component<RouteComponentProps<IFrontPageRouteParam
         name: ''
       },
       guestPatch: {
-        country: '',
-        county: '',
         email: '',
-        postcode: '',
         street: '',
-        town: ''
+        town: '',
+        county: '',
+        postcode: '',
+        country: ''
       },
       inviteCode: this.props.match.params.inviteCode,
       updateComplete: false
