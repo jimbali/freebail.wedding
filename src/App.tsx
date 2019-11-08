@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './App.css'
 import FrontPage from './pages/front'
 
 const App: React.FC = () => {
+  useEffect(() => {
+    document.title = "FreeBail Wedding!"
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="App">
