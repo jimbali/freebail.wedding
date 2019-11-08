@@ -7,13 +7,59 @@ label {
 
 input {
   border: 1px solid lightgrey;
-  height: 28px;
   font-size: 60%;
+  height: 28px;
   width: 250px;
 
   &[type="submit"] {
     display: inline-block;
     height: 40px;
     -webkit-appearance: none;
+  }
+}
+
+::-webkit-input-placeholder {
+   color: transparent;
+}
+
+:-moz-placeholder {
+    color: transparent;
+}
+
+::-moz-placeholder {
+    color: transparent;
+}
+
+:-ms-input-placeholder {
+    color: transparent;
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+@media screen and (max-width: 480px) {
+  label {
+    display: none;
+  }
+
+  ::-webkit-input-placeholder {
+     color: lightgrey;
+  }
+
+  :-moz-placeholder {
+      color: lightgrey;
+  }
+
+  ::-moz-placeholder {
+      color: lightgrey;
+  }
+
+  :-ms-input-placeholder {
+      color: lightgrey;
+  }
+
+  input::placeholder {
+      color: lightgrey;
   }
 }

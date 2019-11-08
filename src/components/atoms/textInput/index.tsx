@@ -20,6 +20,7 @@ const TextInput = (props: ITextInputProps) => {
         name={props.name}
         defaultValue={props.value}
         onChange={props.onChange}
+        placeholder={props.label}
       />
     </div>
   )
