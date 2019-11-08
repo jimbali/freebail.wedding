@@ -12,7 +12,7 @@ const TextInput = (props: ITextInputProps) => {
   let id = 'text-input-' + props.name
   return (
     <div className="row">
-      <label htmlFor={id}> {props.label}</label>
+      <label htmlFor={id}>{props.label}</label>
       <input
         id={id}
         type="text"
