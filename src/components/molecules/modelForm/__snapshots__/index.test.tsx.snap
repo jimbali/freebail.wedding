@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelForm should render without exploding 1`] = `
+<form
+  className="modelForm"
+  onSubmit={[Function]}
+>
+  <TextInput
+    label="field1"
+    name="field1"
+    onChange={[Function]}
+    value="field1val"
+  />
+  <TextInput
+    label="field2"
+    name="field2"
+    onChange={[Function]}
+    value="field2val"
+  />
+  <input
+    type="submit"
+    value="Send"
+  />
+</form>
+`;
