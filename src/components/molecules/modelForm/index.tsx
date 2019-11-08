@@ -3,6 +3,7 @@ import TextInput from '../../atoms/textInput'
 import './styles.scss'
 
 interface IModelFormProps<T extends object> {
+  labels?: { [key: string]: string },
   model: T,
   onSubmit: (model: T) => void
 }
@@ -51,7 +52,7 @@ class ModelForm<T extends object> extends React.Component<IModelFormProps<T>, IM
           <TextInput
             name={name}
             value={value}
-            label={name}
+            label={this.getLabel(name)}
             key={index}
             onChange={this.handleInputChange.bind(this)}
           />
@@ -65,6 +66,13 @@ class ModelForm<T extends object> extends React.Component<IModelFormProps<T>, IM
   private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     this.props.onSubmit(this.state.model)
+  }
+
+  private getLabel(name: string): string {
+    let labels = this.props.labels || {}
+    if (labels[name]) return labels[name]
+
+    return name
   }
 }
 

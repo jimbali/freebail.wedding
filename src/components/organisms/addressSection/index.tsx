@@ -32,7 +32,12 @@ function AddressSection(props: IAddressSectionProps) {
         <h2>Hi, {props.name}!</h2>
         <p>Please let us know your postal address as we'd love to send you a proper invitation.</p>
         <div className="guest">
-          <ModelForm<IGuestPatch> key="patchForm" model={props.guestPatch} onSubmit={props.updateGuest}/>
+          <ModelForm<IGuestPatch>
+            key="patchForm"
+            labels={{ street: 'address' }}
+            model={props.guestPatch}
+            onSubmit={props.updateGuest}
+          />
         </div>
         <p>Thanks, Sarah &amp; Jim x</p>
       </div>
@@ -48,7 +53,12 @@ function AddressSection(props: IAddressSectionProps) {
           below and let us know your address and we'll work it out!
         </p>
         <div className="guest">
-          <ModelForm<IGuestPost> key="postForm" model={newGuest()} onSubmit={props.createGuest}/>
+          <ModelForm<IGuestPost>
+            key="postForm"
+            labels={{ street: 'address' }}
+            model={newGuest()}
+            onSubmit={props.createGuest}
+          />
         </div>
         <p>Thanks, Sarah &amp; Jim x</p>
       </div>
