@@ -30,7 +30,7 @@ function AddressSection(props: IAddressSectionProps) {
     return (
       <div className="addressSection">
         <h2>Hi, {props.name}!</h2>
-        <p>Please let us know your postal address</p>
+        <p>Please let us know your postal address as we'd love to send you a proper invitation.</p>
         <div className="guest">
           <ModelForm<IGuestPatch> key="patchForm" model={props.guestPatch} onSubmit={props.updateGuest}/>
         </div>
