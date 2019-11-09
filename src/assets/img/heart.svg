@@ -619,8 +619,8 @@
 		c-0.647,1.203-1.278,2.625-1.894,4.266c-0.064,0.164-0.117,0.313-0.16,0.447c-0.044,0.135-0.088,0.25-0.134,0.346
 		C177.119,163.966,177.001,164.066,176.859,164.066z"/>
 </g>
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="112.888" y1="204.137" x2="136.813" y2="222.378"/>
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="136.813" y1="222.378" x2="159.468" y2="204.137"/>
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="124.851" y1="204.137" x2="136.813" y2="213.258"/>
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="136.813" y1="213.258" x2="148.141" y2="204.137"/>
+<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="112.888" y1="204.137" x2="136.813" y2="222.378"/>
+<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="136.813" y1="222.378" x2="159.468" y2="204.137"/>
+<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="124.851" y1="204.137" x2="136.813" y2="213.258"/>
+<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="136.813" y1="213.258" x2="148.141" y2="204.137"/>
 </svg>
