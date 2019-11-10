@@ -6,16 +6,16 @@ exports[`ModelForm should render without exploding 1`] = `
   onSubmit={[Function]}
 >
   <TextInput
-    label="field1"
-    name="field1"
-    onChange={[Function]}
-    value="field1val"
-  />
-  <TextInput
     label="field2"
     name="field2"
     onChange={[Function]}
     value="field2val"
+  />
+  <TextInput
+    label="field1"
+    name="field1"
+    onChange={[Function]}
+    value="field1val"
   />
   <input
     type="submit"

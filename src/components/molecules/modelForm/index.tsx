@@ -5,7 +5,8 @@ import './styles.scss'
 interface IModelFormProps<T extends object> {
   labels?: { [key: string]: string },
   model: T,
-  onSubmit: (model: T) => void
+  onSubmit: (model: T) => void,
+  propsOrder: (keyof T)[]
 }
 
 interface IModelFormState<T extends object> {
@@ -43,7 +44,7 @@ class ModelForm<T extends object> extends React.Component<IModelFormProps<T>, IM
   }
 
   private inputs(): ReactChild[] {
-    return Object.entries(this.state.model).map((entry, index) => {
+    return this.modelKeyValuePairs().map((entry, index) => {
       const name = entry[0]
       const value = entry[1]
 
@@ -73,6 +74,10 @@ class ModelForm<T extends object> extends React.Component<IModelFormProps<T>, IM
     if (labels[name]) return labels[name]
 
     return name
+  }
+
+  private modelKeyValuePairs(): [keyof T, any][] {
+    return this.props.propsOrder.map((prop, _index) => [prop, this.state.model[prop]])
   }
 }
 

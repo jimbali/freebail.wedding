@@ -15,7 +15,7 @@ describe(ModelForm, () => {
   const onSubmit = mockFn
 
   const instance = () => {
-    return <ModelForm<ITestInterface> model={model} onSubmit={onSubmit}/>
+    return <ModelForm<ITestInterface> model={model} onSubmit={onSubmit} propsOrder={['field2', 'field1']}/>
   }
 
   it('should render without exploding', () => {

@@ -37,6 +37,7 @@ function AddressSection(props: IAddressSectionProps) {
             labels={{ street: 'address' }}
             model={props.guestPatch}
             onSubmit={props.updateGuest}
+            propsOrder={['email', 'street', 'town', 'county', 'postcode', 'country']}
           />
         </div>
         <p>Thanks, Sarah &amp; Jim x</p>
@@ -58,6 +59,7 @@ function AddressSection(props: IAddressSectionProps) {
             labels={{ street: 'address' }}
             model={newGuest()}
             onSubmit={props.createGuest}
+            propsOrder={['name', 'email', 'street', 'town', 'county', 'postcode', 'country']}
           />
         </div>
         <p>Thanks, Sarah &amp; Jim x</p>
