@@ -6,7 +6,7 @@ RUN apk add --no-cache --update python2 make g++
 WORKDIR /app
 COPY . ./
 
-RUN yarn
+RUN yarn --network-timeout 100000
 RUN yarn build
 
 # Stage 2 - the production environment
